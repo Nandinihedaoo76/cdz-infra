@@ -10,6 +10,6 @@ resource "aws_instance" "infra" {
                 Name = "infra"
                 env = "dev"
         }
-        vpc_security_group_ids = ["sg-0301c5e1980e14581"]
+        vpc_security_group_ids = ["sg-060d5077072b374f7"]
   
 }
