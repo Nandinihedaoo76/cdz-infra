@@ -25,6 +25,8 @@ resource "aws_db_instance" "student_db_instance" {
     password             = var.password
     vpc_security_group_ids = [aws_security_group.rds_sg.id]
     skip_final_snapshot = true
+    parameter_group_name = "default.mysql8.0"
+    publicly_accessible  = true
 
     timeouts {
       create = "3h"
