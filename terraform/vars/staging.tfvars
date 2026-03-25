@@ -3,7 +3,7 @@ aws_region = "us-east-2"
 
 # RDS Variables
 rds_instance_class        = "db.t2.micro"
-rds_allocated_storage     = 50
+rds_allocated_storage     = 10
 rds_username             = "admin"
 rds_password             = "StagingPassword123"  # Change this in production
 rds_db_name              = "studentdb"
