@@ -18,7 +18,7 @@ resource "aws_db_instance" "student_rds" {
     allocated_storage    = var.allocated_storage
     storage_type         = "gp2"
     engine               = "mysql"
-    engine_version       = "11.8.5"
+    engine_version       = "8.4.7"
     instance_class       = "db.t3.micro"
     db_name              = var.db_name
     username             = var.username
