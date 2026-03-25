@@ -14,7 +14,6 @@ module "rds" {
 
 module "eks" {
     source = "./modules/eks"
-    
     project            = var.eks_project
     desired_nodes      = var.eks_desired_nodes
     max_nodes          = var.eks_max_nodes
@@ -26,7 +25,6 @@ module "eks" {
 
 module "s3" {
     source = "./modules/s3"
-    
     bucket_name  = var.s3_bucket_name
     environment  = var.s3_environment
 }
