@@ -50,7 +50,7 @@ resource "aws_s3_bucket_policy" "static_website_policy" {
 }
 
 # Output the bucket's website endpoint
-output "website_endpoint" {
-  value       = aws_s3_bucket.cbz_bucket.website_endpoint
+output "website_domain" {
+  value       = aws_s3_bucket_website_configuration.cbz_bucket_website.website_domain
   description = "The URL to access the static website"
 }
