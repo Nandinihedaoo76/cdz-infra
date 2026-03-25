@@ -1,5 +1,21 @@
+data "aws_vpc" "default" {
+    default = true
+}
+
+data "aws_subnets" "default" {
+    filter {
+        name   = "vpc-id"
+        values = [data.aws_vpc.default.id]
+    }
+}
+
+data "aws_subnet" "name" {
+        id = data.aws_subnets.default.ids[0]
+}
+
+
 resource "aws_db_instance" "student_rds" {
-    allocated_storage    = 20
+    allocated_storage    = var.allocated_storage
     storage_type         = "gp2"
     engine               = "mysql"
     engine_version       = "11.8.5"
@@ -14,13 +30,18 @@ resource "aws_db_instance" "student_rds" {
       delete = "3h"
       update = "3h"
     }
+
+    tags = {
+    Name        = "student_rds"
+    Environment = var.environment
+  }
   
 }
 
 resource "aws_security_group" "rds_sg" {
     name        = "rds_sg"
     description = "Security group for RDS instance"
-    vpc_id      = var.vpc_id
+    vpc_id      = data.aws_vpc.default.id
 
     ingress {
         from_port   = 3306
@@ -35,11 +56,19 @@ resource "aws_security_group" "rds_sg" {
         protocol    = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     }
+
+    tags = {
+    Name        = "rds_sg"
+    Environment = var.environment
+  }
 }
 
-resource "aws_db_subnet_group" "rds_subnet_group" {
-    name       = "rds_subnet_group"
-    subnet_ids = [var.private_db_subnet_id]
-    description = "Subnet group for RDS instance"
+resource "aws_db_subnet_group" "default" {
+    name       = "default-db-subnet-group-${var.environment}"
+    subnet_ids = data.aws_subnets.default.ids
+    tags = {
+    Name        = "rds_subnet_group"
+    Environment = var.environment
+  }
   
 }

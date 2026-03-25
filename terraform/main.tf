@@ -1,19 +1,32 @@
 provider "aws" {
-    region = "eu-north-1"
+    region = var.aws_region
 }
 
 module "rds" {
     source = "./modules/rds"
-    db_name = "student_db"
-    username = "nandu"
-    password = "redhat"
-    vpc_id = module.vpc.vpc_id
-    private_db_subnet_id = module.vpc
-    
+    db_name = var.rds_db_name
+    instance_class        = var.rds_instance_class
+    allocated_storage     = var.rds_allocated_storage
+    username             = var.rds_username
+    password             = var.rds_password
+    environment          = var.environment
 }
 
-module "vpc" {
-    source = "./modules/vpc"
-    private_db_subnet_cidr = "10.10.2.0/24"
-    private_db_availability_zone = "eu-north-1a"
+module "eks" {
+    source = "./modules/eks"
+    
+    project            = var.eks_project
+    desired_nodes      = var.eks_desired_nodes
+    max_nodes          = var.eks_max_nodes
+    min_nodes          = var.eks_min_nodes
+    node_instance_type = var.eks_node_instance_type
+    environment        = var.environment
+}
+
+
+module "s3" {
+    source = "./modules/s3"
+    
+    bucket_name  = var.s3_bucket_name
+    environment  = var.s3_environment
 }
