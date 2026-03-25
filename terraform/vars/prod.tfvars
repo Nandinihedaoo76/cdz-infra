@@ -1,4 +1,4 @@
-locals {
+
   environmenvironment = "prod"
   aws_region = "eu-north-1"
 
@@ -20,4 +20,3 @@ locals {
   s3_bucket_name = "cbz-frontend-prod-bucket"
   s3_environment = "prod" 
 
-}
