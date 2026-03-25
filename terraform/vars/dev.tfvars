@@ -16,5 +16,5 @@ eks_min_nodes          = 2
 eks_node_instance_type = "t3.medium"
 
 # S3 Variables
-s3_bucket_name = "radison-hms-frontend"
+s3_bucket_name = "infra-dev-bucket"
 s3_environment = "dev" 
