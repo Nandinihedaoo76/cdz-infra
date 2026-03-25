@@ -6,6 +6,7 @@ rds_instance_class        = "db.t3.micro"
 rds_allocated_storage     = 20
 rds_username             = "admin"
 rds_password             = "DevPassword123"  # Change this in production
+rds_db_name              = "studentdb"
 
 # EKS Variables
 eks_project            = "radison-hms"
