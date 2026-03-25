@@ -3,7 +3,7 @@
   aws_region = "eu-north-1"
 
 # RDS Variables
-  rds_instance_class        = "db.t2.micro"
+  rds_instance_class        = "db.t4g.micro"
   rds_allocated_storage     = 10
   rds_username             = "admin"
   rds_password             = "ProdPassword123"  # Change this in production

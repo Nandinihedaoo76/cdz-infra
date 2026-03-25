@@ -19,7 +19,7 @@ resource "aws_db_instance" "student_db_instance" {
     storage_type         = "gp2"
     engine               = "mysql"
     engine_version       = "8.0"
-    instance_class       = "db.t2.micro"
+    instance_class       = "db.t4g.micro"
     db_name              = var.db_name
     username             = var.username
     password             = var.password
