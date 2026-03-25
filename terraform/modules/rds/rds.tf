@@ -14,11 +14,11 @@ data "aws_subnet" "name" {
 }
 
 
-resource "aws_db_instance" "student_rds" {
+resource "aws_db_instance" "student_db_instance" {
     allocated_storage    = var.allocated_storage
     storage_type         = "gp2"
     engine               = "mysql"
-    engine_version       = "8.4.7"
+    engine_version       = "8.0"
     instance_class       = "db.t2.micro"
     db_name              = var.db_name
     username             = var.username
@@ -33,7 +33,7 @@ resource "aws_db_instance" "student_rds" {
     }
 
     tags = {
-    Name        = "student_rds"
+    Name        = "student_db_instance"
     Environment = var.environment
   }
   
